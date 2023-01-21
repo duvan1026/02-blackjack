@@ -54,4 +54,12 @@ const pedirCarta = () => {
 }
 
 
-pedirCarta();
+// pedirCarta();
+
+const valorCarta = ( carta ) => {
+
+    const valor = carta[0];// Los string se pueden manejar como arrays en JS
+    console.log(valor);
+}
+
+valorCarta( '2D' );
