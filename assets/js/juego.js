@@ -58,8 +58,9 @@ const pedirCarta = () => {
 
 const valorCarta = ( carta ) => {
 
-    const valor = carta[0];// Los string se pueden manejar como arrays en JS
-    console.log(valor);
+    // const valor = carta[0];// Los string se pueden manejar como arrays en JS
+    const valor = carta.substring(0, carta.length - 1); // corta el string sin tomar la ultima letra.
+    console.log({ valor });
 }
 
 valorCarta( '2D' );
