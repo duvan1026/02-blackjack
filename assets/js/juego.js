@@ -9,6 +9,7 @@ let deck         = []; // Cartas a utilizar
 const tipos      = ['C','D','H','S'];
 const especiales = ['A','J','Q','K']; 
 
+// Esta función crea un nuevo deck o baraja de cartas.
 const crearDeck = () => {
 
     // Crea las cartas del 2 al 10 con los diferentes tipos(corazon, diamantes, treboles...)
@@ -32,5 +33,25 @@ const crearDeck = () => {
     return deck;
 }
 
-
 crearDeck();
+
+
+// Esta función me permite tomar una carta
+const pedirCarta = () => {
+
+    if( deck.length === 0 )
+    {
+        throw 'No hay mas cartas en el deck'; // Mensaje de alerta que se han agotado las cartas
+    }
+
+    const carta = deck[Math.floor(Math.random() * deck.length)]; // seleccionamos un dato randow del arreglo.
+    console.log(carta);
+    
+    deck = deck.filter((i) => i !== carta); // filtramos
+    console.log(deck);
+
+    return carta;
+}
+
+
+pedirCarta();
