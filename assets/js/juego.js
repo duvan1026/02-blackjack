@@ -60,7 +60,13 @@ const valorCarta = ( carta ) => {
 
     // const valor = carta[0];// Los string se pueden manejar como arrays en JS
     const valor = carta.substring(0, carta.length - 1); // corta el string sin tomar la ultima letra.
-    console.log({ valor });
+    // 2 = 2,  10 = 10, 3 = 3
+    if( isNaN( valor ) ){ // isNaN = evalua si el tipo de dato es numero o no.
+        console.log('No es un numero');
+
+    }else {
+        console.log('Es un numero');
+    }
 }
 
-valorCarta( '2D' );
+valorCarta( 'KD' );
