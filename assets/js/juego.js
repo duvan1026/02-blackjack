@@ -60,19 +60,21 @@ const valorCarta = ( carta ) => {
 
     // const valor = carta[0];// Los string se pueden manejar como arrays en JS
     const valor = carta.substring(0, carta.length - 1); // corta el string sin tomar la ultima letra.
-    let puntos = 0;
-
+    
+    //let puntos = 0;
     // 2 = 2,  10 = 10, 3 = 3
-    if( isNaN( valor ) ){ // isNaN = evalua si el tipo de dato es numero o no.
+    // if( isNaN( valor ) ){ // isNaN = evalua si el tipo de dato es numero o no.
+    //     puntos = ( valor === 'A' ) ? 11 : 10;
+    // }else {
+    //     console.log('Es un numero');
+    //     puntos = valor * 1;// Transformar un string a numero
+    // }
 
-        puntos = ( valor === 'A' ) ? 11 : 10;
-
-    }else {
-        console.log('Es un numero');
-        puntos = valor * 1;// Transformar un string a numero
-    }
-
-    console.log({puntos});
+    // Estrucutras de control simplificada
+    return ( isNaN( valor ) ) ? 
+            ( valor === 'A' ) ? 11 : 10 
+            : valor * 1;
 }
 
-valorCarta( 'AD' );
+const valor = valorCarta( pedirCarta() );
+console.log({ valor });
