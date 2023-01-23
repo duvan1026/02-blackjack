@@ -14,6 +14,7 @@ let puntosJugador = 0,
 
 // Referencias del HTML
 const btnPedir = document.querySelector('#btnPedir');
+const divCartasJugador = document.querySelector('#jugador-cartas');
 const LabelPuntosHTML = document.querySelectorAll('small');
 
 
@@ -94,6 +95,11 @@ btnPedir.addEventListener( 'click',() => {
     puntosJugador += valorCarta( carta );
     LabelPuntosHTML[0].innerText = puntosJugador;
 
-    
+    // <!-- <img class="carta" src="./cartas/10C.png" alt=""> -->
+    const imgCarta = document.createElement('img');//Crear una imagen
+    imgCarta.src =`./cartas/${ carta }.png`; //muestra la carta escogida.
+    imgCarta.classList.add( 'carta' );
+    divCartasJugador.append( imgCarta ); // Insertamos carta en el html seleccionada
+
 
 } ) // Calback es una función que se envia como argumento.
