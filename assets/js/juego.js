@@ -9,6 +9,14 @@ let deck         = []; // Cartas a utilizar
 const tipos      = ['C','D','H','S'];
 const especiales = ['A','J','Q','K']; 
 
+let puntosJugador = 0,
+    puntosComputadora = 0;
+
+// Referencias del HTML
+const btnPedir = document.querySelector('#btnPedir');
+const LabelPuntosHTML = document.querySelectorAll('small');
+
+
 // Esta función crea un nuevo deck o baraja de cartas.
 const crearDeck = () => {
 
@@ -45,10 +53,10 @@ const pedirCarta = () => {
     }
 
     const carta = deck[Math.floor(Math.random() * deck.length)]; // seleccionamos un dato randow del arreglo.
-    console.log(carta);
+    // console.log(carta);
     
     deck = deck.filter((i) => i !== carta); // filtramos
-    console.log(deck);
+    // console.log(deck);
 
     return carta;
 }
@@ -76,5 +84,16 @@ const valorCarta = ( carta ) => {
             : valor * 1;
 }
 
-const valor = valorCarta( pedirCarta() );
-console.log({ valor });
+
+
+// Eventos 
+btnPedir.addEventListener( 'click',() => {
+
+    const carta = pedirCarta();
+
+    puntosJugador += valorCarta( carta );
+    LabelPuntosHTML[0].innerText = puntosJugador;
+
+    
+
+} ) // Calback es una función que se envia como argumento.
