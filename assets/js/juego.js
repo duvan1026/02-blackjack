@@ -9,6 +9,18 @@ let deck         = []; // Cartas a utilizar
 const tipos      = ['C','D','H','S'];
 const especiales = ['A','J','Q','K']; 
 
+let puntosJugador = 0,
+    puntosComputadora = 0;
+
+// Referencias del HTML
+const btnPedir = document.querySelector('#btnPedir');
+
+const divCartasJugador      = document.querySelector('#jugador-cartas');
+const divCartasComputadora  = document.querySelector('#computadora-cartas');
+
+const LabelPuntosHTML  = document.querySelectorAll('small');
+
+
 // Esta función crea un nuevo deck o baraja de cartas.
 const crearDeck = () => {
 
@@ -45,10 +57,10 @@ const pedirCarta = () => {
     }
 
     const carta = deck[Math.floor(Math.random() * deck.length)]; // seleccionamos un dato randow del arreglo.
-    console.log(carta);
+    // console.log(carta);
     
     deck = deck.filter((i) => i !== carta); // filtramos
-    console.log(deck);
+    // console.log(deck);
 
     return carta;
 }
@@ -76,5 +88,58 @@ const valorCarta = ( carta ) => {
             : valor * 1;
 }
 
-const valor = valorCarta( pedirCarta() );
-console.log({ valor });
+
+// Turno de la Computadora
+const turnoComputadora = ( puntosMinimos ) => {
+
+    do{
+
+        const carta = pedirCarta();
+
+        puntosComputadora += valorCarta( carta );
+        LabelPuntosHTML[1].innerText = puntosComputadora;
+
+        // <!-- <img class="carta" src="./cartas/3C.png" alt=""> -->
+        const imgCarta = document.createElement('img');//Crear una imagen
+        imgCarta.src =`./cartas/${ carta }.png`; //muestra la carta escogida.
+        imgCarta.classList.add( 'carta' );
+        divCartasComputadora.append( imgCarta ); // Insertamos carta en el html seleccionada
+
+        if( puntosMinimos > 21 ){
+            break;
+        }
+
+    }while( (puntosComputadora < puntosMinimos) && (puntosMinimos <= 21));
+
+}
+
+
+
+// Eventos 
+btnPedir.addEventListener( 'click',() => {
+
+    const carta = pedirCarta();
+
+    puntosJugador += valorCarta( carta );
+    LabelPuntosHTML[0].innerText = puntosJugador;
+
+    // <!-- <img class="carta" src="./cartas/10C.png" alt=""> -->
+    const imgCarta = document.createElement('img');//Crear una imagen
+    imgCarta.src =`./cartas/${ carta }.png`; //muestra la carta escogida.
+    imgCarta.classList.add( 'carta' );
+    divCartasJugador.append( imgCarta ); // Insertamos carta en el html seleccionada
+
+    if ( puntosJugador > 21 )
+    {
+        console.warn('Lo siento mucho, perdiste');
+        btnPedir.disabled = true; // deshabilita el boton
+    } else if ( puntosJugador === 21 ){
+        console.warn('21, genial');
+        btnPedir.disabled = true; // deshabilita el boton
+    }
+
+
+} ) // Calback es una función que se envia como argumento.
+
+// TODO: Borrar
+turnoComputadora( 19 );
