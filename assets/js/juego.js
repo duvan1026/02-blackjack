@@ -101,5 +101,14 @@ btnPedir.addEventListener( 'click',() => {
     imgCarta.classList.add( 'carta' );
     divCartasJugador.append( imgCarta ); // Insertamos carta en el html seleccionada
 
+    if ( puntosJugador > 21 )
+    {
+        console.warn('Lo siento mucho, perdiste');
+        btnPedir.disabled = true; // deshabilita el boton
+    } else if ( puntosJugador === 21 ){
+        console.warn('21, genial');
+        btnPedir.disabled = true; // deshabilita el boton
+    }
+
 
 } ) // Calback es una función que se envia como argumento.
