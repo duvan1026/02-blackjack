@@ -111,8 +111,20 @@ const turnoComputadora = ( puntosMinimos ) => {
             break;
         }
 
-    }while( (puntosComputadora < puntosMinimos) && (puntosMinimos <= 21));
+    } while( (puntosComputadora < puntosMinimos) && (puntosMinimos <= 21));
 
+    setTimeout( () => {
+
+        if ( puntosComputadora === puntosMinimos ){
+            alert('Nadie gana :c');
+        }else if ( puntosMinimos > 21 ){
+            alert('Computadora gana');
+        }else if( puntosComputadora > 21 ){
+            alert('Jugador Gana');
+        }else {
+            alert('computadora gana');
+        }
+    }, 100 );
 }
 
 
@@ -144,7 +156,7 @@ btnPedir.addEventListener( 'click',() => {
         btnDetener.disabled = true;
     }
 
-} ) // Calback es una función que se envia como argumento.
+}); // Calback es una función que se envia como argumento.
 
 
 // Evento boton Detener
