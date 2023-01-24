@@ -166,3 +166,23 @@ btnDetener.addEventListener('click', () => {
     btnDetener.disabled = true;
     turnoComputadora( puntosJugador );
 });
+
+// Evento boton Nuevo
+btnNuevo.addEventListener( 'click', () => {
+
+    deck = [];
+    deck = crearDeck();
+
+    puntosJugador = 0,
+    puntosComputadora = 0;
+
+    LabelPuntosHTML[0].innerText = 0;
+    LabelPuntosHTML[1].innerText = 0;
+
+    divCartasComputadora.innerHTML = '';
+    divCartasJugador.innerHTML = '';
+
+    btnPedir.disabled = false;
+    btnDetener.disabled = false;
+
+});
