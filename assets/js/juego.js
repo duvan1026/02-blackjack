@@ -18,51 +18,46 @@
 (() => {
     'use strict'// JavaScript es estricto a la hora de evaluar el codigo.
 
-    // const personajes = ['Ana', 'Mercy', 'Mei'];
-    // console.log( personajes );
     
     let deck         = []; // Cartas a utilizar
-    const tipos      = ['C','D','H','S'];
-    const especiales = ['A','J','Q','K']; 
+    const tipos      = ['C','D','H','S'],
+          especiales = ['A','J','Q','K']; 
 
-    let puntosJugador = 0,
+    let puntosJugador     = 0,
         puntosComputadora = 0;
 
     // Referencias del HTML
-    const btnPedir   = document.querySelector('#btnPedir');
-    const btnDetener = document.querySelector('#btnDetener');
-    const btnNuevo   = document.querySelector('#btnNuevo');
+    const btnPedir   = document.querySelector('#btnPedir'),
+          btnDetener = document.querySelector('#btnDetener'),
+          btnNuevo   = document.querySelector('#btnNuevo');
 
-    const divCartasJugador      = document.querySelector('#jugador-cartas');
-    const divCartasComputadora  = document.querySelector('#computadora-cartas');
+    const divCartasJugador      = document.querySelector('#jugador-cartas'),
+          divCartasComputadora  = document.querySelector('#computadora-cartas'),
+          LabelPuntosHTML       = document.querySelectorAll('small');
 
-    const LabelPuntosHTML  = document.querySelectorAll('small');
+     // Inicializa el juego     
+    const inicializarJuego = () =>{
+           deck = crearDeck();
+    }
 
-
-    // Esta función crea un nuevo deck o baraja de cartas.
+    // Crea y retorna un nuevo deck(baraja de cartas).
     const crearDeck = () => {
 
-        // Crea las cartas del 2 al 10 con los diferentes tipos(corazon, diamantes, treboles...)
-        for( let i = 2; i <= 10; i++) {
+        deck = []; // INicializamos el deck                                        
+        
+        for( let i = 2; i <= 10; i++) {// Crea las cartas del 2 al 10 con los diferentes tipos(corazon, diamantes, treboles...)
             for( let tipo of tipos  ){
                 deck.push( i + tipo );          
             }
         }
-
-        // Crea las cartas de especiales
-        for( let tipo of tipos ){
+        
+        for( let tipo of tipos ){// Crea las cartas de especiales
             for( let especial of especiales ){
                 deck.push( especial + tipo );
             }
-        }
-
-        // Organiza las cartas de forma randow
-        deck = _.shuffle( deck );
-        return deck;
+        }        
+        return _.shuffle( deck );// Organiza las cartas de forma randow
     }
-
-    crearDeck();
-
 
     // Esta función me permite tomar una carta
     const pedirCarta = () => {
@@ -71,39 +66,19 @@
         {
             throw 'No hay mas cartas en el deck'; // Mensaje de alerta que se han agotado las cartas
         }
-
         const carta = deck[Math.floor(Math.random() * deck.length)]; // seleccionamos un dato randow del arreglo.
-        // console.log(carta);
-        
-        deck = deck.filter((i) => i !== carta); // filtramos
-        // console.log(deck);
-
+        deck = deck.filter((i) => i !== carta); // Filtramos y eliminamos la carta seleccionada.
         return carta;
     }
 
-
-    // pedirCarta();
-
+    // Obtiene el valor de la carta seleccionada.
     const valorCarta = ( carta ) => {
 
-        // const valor = carta[0];// Los string se pueden manejar como arrays en JS
         const valor = carta.substring(0, carta.length - 1); // corta el string sin tomar la ultima letra.
-        
-        //let puntos = 0;
-        // 2 = 2,  10 = 10, 3 = 3
-        // if( isNaN( valor ) ){ // isNaN = evalua si el tipo de dato es numero o no.
-        //     puntos = ( valor === 'A' ) ? 11 : 10;
-        // }else {
-        //     console.log('Es un numero');
-        //     puntos = valor * 1;// Transformar un string a numero
-        // }
-
-        // Estrucutras de control simplificada
         return ( isNaN( valor ) ) ? 
                 ( valor === 'A' ) ? 11 : 10 
                 : valor * 1;
     }
-
 
     // Turno de la Computadora
     const turnoComputadora = ( puntosMinimos ) => {
@@ -184,8 +159,10 @@
     // Evento boton Nuevo
     btnNuevo.addEventListener( 'click', () => {
 
-        deck = [];
-        deck = crearDeck();
+        console.clear();
+        inicializarJuego();
+        // deck = [];
+        // deck = crearDeck();
 
         puntosJugador = 0,
         puntosComputadora = 0;
