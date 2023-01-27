@@ -182,7 +182,7 @@ const miModulo = (() => {
         // console.log('Click boton detener');
         btnPedir.disabled = true;
         btnDetener.disabled = true;
-        turnoComputadora( puntosJugador );
+        turnoComputadora( puntosJugadores[0] );
     });
 
     // Evento boton Nuevo
