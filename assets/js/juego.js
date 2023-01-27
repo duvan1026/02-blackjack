@@ -92,6 +92,7 @@
     
     }
 
+    // Crea las cartas en el html de acuerdo al turno del jugador asignado
     const crearCarta = ( carta, turno ) => {
 
         const imgCarta = document.createElement('img');//Crear una imagen
@@ -101,30 +102,10 @@
 
     }
 
-    // Turno de la Computadora
-    const turnoComputadora = ( puntosMinimos ) => {
 
-        let puntosComputadora = 0;
-        
-        do{
+    const determinarGanador = () => {
 
-            const carta = pedirCarta();
-            const turnoComputadora = puntosJugadores.length - 1;
-
-            puntosComputadora = acumularPuntos( carta, turnoComputadora );
-            crearCarta( carta, turnoComputadora );
-
-            // <!-- <img class="carta" src="./cartas/3C.png" alt=""> -->
-            // const imgCarta = document.createElement('img');//Crear una imagen
-            // imgCarta.src =`./cartas/${ carta }.png`; //muestra la carta escogida.
-            // imgCarta.classList.add( 'carta' );
-            // divCartasComputadora.append( imgCarta ); // Insertamos carta en el html seleccionada
-
-            if( puntosMinimos > 21 ){
-                break;
-            }
-
-        } while( (puntosComputadora < puntosMinimos) && (puntosMinimos <= 21));
+        const [ puntosMinimos, puntosComputadora ] = puntosJugadores; // Desestructuración de arreglos.
 
         setTimeout( () => {
 
@@ -138,6 +119,27 @@
                 alert('computadora gana');
             }
         }, 100 );
+    
+    }
+
+
+
+    // Turno de la Computadora
+    const turnoComputadora = ( puntosMinimos ) => {
+
+        let puntosComputadora = 0;
+
+        do{
+
+            const carta = pedirCarta();
+            const turnoComputadora = puntosJugadores.length - 1;
+
+            puntosComputadora = acumularPuntos( carta, turnoComputadora );
+            crearCarta( carta, turnoComputadora );
+
+        } while( (puntosComputadora < puntosMinimos) && (puntosMinimos <= 21));
+
+        determinarGanador();
     }
 
 
@@ -148,14 +150,7 @@
         const carta = pedirCarta();
         const puntosJugador = acumularPuntos( carta, 0 );
 
-
         crearCarta( carta, 0 );
-
-        // <!-- <img class="carta" src="./cartas/10C.png" alt=""> -->
-        // const imgCarta = document.createElement('img');//Crear una imagen
-        // imgCarta.src =`./cartas/${ carta }.png`; //muestra la carta escogida.
-        // imgCarta.classList.add( 'carta' );
-        // divCartasJugador.append( imgCarta ); // Insertamos carta en el html seleccionada
 
         if ( puntosJugador > 21 )
         {
