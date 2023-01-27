@@ -15,7 +15,7 @@
 * No se puede acceder desde el navegador, porque se encuentra
 * ubicado en algun lugar de memoria sin un identificador por nombre
 */
-(() => {
+const miModulo = (() => {
     'use strict'// JavaScript es estricto a la hora de evaluar el codigo.
 
     
@@ -35,10 +35,19 @@
 
      // Inicializa el juego     
     const inicializarJuego = ( numJugadores = 2 ) =>{
-           deck = crearDeck();
-           for( let i = 0; i < numJugadores; i++ ){// Inicializa el arreglo segun el numero de jugadores.
-                puntosJugadores.push(0);
-            }
+
+        deck = crearDeck();
+
+        puntosJugadores = [];
+        for( let i = 0; i < numJugadores; i++ ){// Inicializa el arreglo segun el numero de jugadores.
+            puntosJugadores.push(0);
+        }
+
+        LabelPuntosHTML.forEach( elem => elem.innerText = 0 ); // Coloca los valores en 0 en el html correspondientes a los puntos.
+        divCartasJugadores.forEach( elem => elem.innerHTML = '' );// Coloca los valores en '' en el html correspondientes a los div.
+
+        btnPedir.disabled = false;
+        btnDetener.disabled = false;
     }
 
     // Crea y retorna un nuevo deck(baraja de cartas).
@@ -102,7 +111,7 @@
 
     }
 
-
+    // Determina quien es el ganador mostrando un mensaje emergente
     const determinarGanador = () => {
 
         const [ puntosMinimos, puntosComputadora ] = puntosJugadores; // Desestructuración de arreglos.
@@ -179,24 +188,13 @@
     // Evento boton Nuevo
     btnNuevo.addEventListener( 'click', () => {
 
-        console.clear();
-        inicializarJuego();
-        // deck = [];
-        // deck = crearDeck();
-
-        // puntosJugador = 0,
-        // puntosComputadora = 0;
-
-        // LabelPuntosHTML[0].innerText = 0;
-        // LabelPuntosHTML[1].innerText = 0;
-
-        // divCartasComputadora.innerHTML = '';
-        // divCartasJugador.innerHTML = '';
-
-        // btnPedir.disabled = false;
-        // btnDetener.disabled = false;
+        inicializarJuego(); 
 
     });
+
+    return {
+       nuevoJuego: inicializarJuego
+    };// Todo lo que se agregue en el return, SERA PUBLICO
 
 
 })();
