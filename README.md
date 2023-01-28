@@ -90,3 +90,7 @@ Su principal objetivo es tener **acceso dinámico a través de programación a s
                 ```
 
       **Nota**: Si desea mas información al respecto puede consultar al siguiente [LINK](https://developer.mozilla.org/es/docs/Web/API/Document/querySelectorAll).
+
+## Tips
+
+* Programa que comprime, compacta y ofusca el codigo de Javascript [link](https://www.toptal.com/developers/javascript-minifier);
