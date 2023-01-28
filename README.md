@@ -93,4 +93,4 @@ Su principal objetivo es tener **acceso dinámico a través de programación a s
 
 ## Tips
 
-* Programa que comprime, compacta y ofusca el codigo de Javascript [link](https://www.toptal.com/developers/javascript-minifier);
+* Programa que comprime, compacta y ofusca el codigo de Javascript [link](https://www.toptal.com/developers/javascript-minifier), con el fin deque el archivo este listo para producción, el estandar establece que dichos archivos deben contener su nombre seguido de **-min.js**, lo cual, muestra que dicho archivo esta comprimido, ofuscado y listo para
