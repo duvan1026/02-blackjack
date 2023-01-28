@@ -21,9 +21,9 @@
     */  -->
     <div class="row mt-2"> 
         <div class="col text-center">
-            <button id="btnNuevo" class="btn btn-danger">Nuevo Juego</button>
-            <button id="btnPedir" class="btn btn-primary">Pedir Carta</button>
-            <button id="btnDetener" class="btn btn-primary">Detener</button>
+            <button id="btnNuevo"  class="btn btn-danger">Nuevo Juego</button>
+            <button id="btnPedir" disabled = "disabled" class="btn btn-primary">Pedir Carta</button>
+            <button id="btnDetener" disabled = "disabled" class="btn btn-primary">Detener</button>
         </div>
     </div>
 
@@ -33,7 +33,7 @@
 
             <h1>Jugador 1 - <small>0</small></h1>
             <!-- se colocaran todas las cartas que el jugador va mostrando -->
-            <div id="jugador-cartas">
+            <div id="jugador-cartas" class="divCartas" >
                 <!-- <img class="carta" src="./cartas/10C.png" alt=""> -->
             </div>
         </div>
@@ -45,14 +45,21 @@
 
             <h1>Computadora - <small>0</small></h1>
             <!-- se colocaran todas las cartas que el jugador va mostrando -->
-            <div id="computadora-cartas">
+            <div id="computadora-cartas" class="divCartas">
                 <!-- <img class="carta" src="./cartas/3C.png" alt=""> -->
             </div>
         </div>
     </div>
 
     <script src="../assets/js/underscore-min.js"></script>
-    <script src="./js/juego.js"></script>
+    <script src="./js/juego-min.js"></script>
+
+    <script>
+        //inicializarJuego();
+        console.log(miModulo);
+
+        miModulo.nuevoJuego();
+    </script>
 
 </body>
 </html>
